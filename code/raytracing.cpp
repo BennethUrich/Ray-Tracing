@@ -30,3 +30,28 @@ struct Ray{
 
     Ray(const Vec3& o, const Vec3& d) : origin(o), direction(d.normalize()) {}
 };
+
+struct Sphere {
+    Vec3 center;
+    float radius;
+
+    Sphere(const Vec3& c, float r) : center(c), radius(r) {}
+
+    bool intersect(const Ray& ray, float& t) const{
+        Vec3 oc = ray.origin - center;
+        float a = dot(ray.direction, ray.direction);
+        float b = 2.0f * dot(oc, ray.direction);
+        float c = dot(oc, oc) - radius*radius;
+        float discriminant = b*b - 4*a*c;
+
+        if (discriminant < 0) return false;
+
+        float sqrtd = std::sqrt(discriminant);
+        float t0 = (-b - sqrtd) / (2*a);
+        float t1 = (-b + sqrtd) / (2*a);
+
+        t = (t0 < t1) ? t0 : t1;
+        return true;
+
+    }
+};
