@@ -66,7 +66,18 @@ char getCharByIntensity(float intensity) {
 int main() {
     // configurações da cena
     // camera
+    Vec3 cameraPos(0, 0, -3);
+    Vec3 lookAt(0, 0, 0);
+    Vec3 up(0, 1, 0);
+
+    Vec3 forward = (lookAt - cameraPos).normalize();
+    Vec3 right = Vec3(forward.z, 0, -forward.x).normalize();
+    Vec3 cameraUp = Vec3(0, 1, 0);
+
     // objetos na cena
     //luz
+    Vec3 lightDir(-1, -1, -1);
+    lightDir = lightDir.normalize();
+    
     //renderizar
 }
