@@ -113,6 +113,18 @@ int main() {
                     hitNormal = (hitPoint - sphere.center).normalize();
                 }
             }
+
+            // calculo da intensidade 
+            float intensity = 0.0f;
+            if (hit) {
+                intensity = std::max(0.0f, dot(hitNormal, lightDir * -1.0f));
+                // luz ambiente
+                intensity = intensity * 0.7f + 0.3f;
+            }
+
+            std::cout << getCharByIntensity(intensity);
         }
+        std::cout << std::endl;
     }
+    return 0;
 }
