@@ -89,4 +89,30 @@ int main() {
     lightDir = lightDir.normalize();
 
     //renderizar
+    for (int y = 0; y < height; ++y) {
+        for (int x = 0; x < width; ++x) {
+            // coordenadas normalizadas do pixel
+            float px = (2.0f * (x + 0.5f) / width - 1.0f) * aspectRatio;
+            float py = 1.0f - 2.0f * (y + 0.5f) / height;
+
+            // criar raio
+            Vec3 rayDir = (forward + right*px + cameraUp*py).normalize();
+            Ray ray(cameraPos, rayDir);
+
+            // testar interseção com esferas
+            float minDist = std::numeric_limits<float>::max();
+            bool hit = false;
+            Vec3 hitNormal;
+
+            for (const auto& sphere : spheres) {
+                float t;
+                if (sphere.intersect(ray, t) && t < minDist) {
+                    minDist = t;
+                    hit = true;
+                    Vec3 hitPoint = ray.origin + ray.direction * t;
+                    hitNormal = (hitPoint - sphere.center).normalize();
+                }
+            }
+        }
+    }
 }
