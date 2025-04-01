@@ -4,6 +4,7 @@
 #include <limits>
 #include <algorithm>
 
+// definição de estruturas basicas
 struct Vec3 {
     float x, y, z;
 
@@ -31,6 +32,7 @@ struct Ray{
     Ray(const Vec3& o, const Vec3& d) : origin(o), direction(d.normalize()) {}
 };
 
+// estrutura para uma esfera
 struct Sphere {
     Vec3 center;
     float radius;
@@ -56,6 +58,7 @@ struct Sphere {
     }
 };
 
+// determina o caractere com base na intensidade
 char getCharByIntensity(float intensity) {
     const std::string chars = " .,:;+*?%S#@";
     int index = intensity * (chars.length() - 1);
@@ -121,7 +124,7 @@ int main() {
                 // luz ambiente
                 intensity = intensity * 0.7f + 0.3f;
             }
-
+            // seleciona o caractere baseado na intensidade
             std::cout << getCharByIntensity(intensity);
         }
         std::cout << std::endl;
