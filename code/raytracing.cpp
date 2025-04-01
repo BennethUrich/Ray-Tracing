@@ -55,3 +55,18 @@ struct Sphere {
 
     }
 };
+
+char getCharByIntensity(float intensity) {
+    const std::string chars = " .,:;+*?%S#@";
+    int index = intensity * (chars.length() - 1);
+    index = std::max(0, std::min(static_cast<int>(chars.length() -1), index));
+    return chars[index];
+}
+
+int main() {
+    // configurações da cena
+    // camera
+    // objetos na cena
+    //luz
+    //renderizar
+}
