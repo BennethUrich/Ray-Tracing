@@ -1,1 +1,1 @@
-# Ray-Tracing in C
+# Ray-Tracing in C++
