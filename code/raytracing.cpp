@@ -65,6 +65,10 @@ char getCharByIntensity(float intensity) {
 
 int main() {
     // configurações da cena
+    const int width = 80;
+    const int height = 40;
+    const float aspectRatio = float(width) / float(height);
+
     // camera
     Vec3 cameraPos(0, 0, -3);
     Vec3 lookAt(0, 0, 0);
@@ -75,9 +79,14 @@ int main() {
     Vec3 cameraUp = Vec3(0, 1, 0);
 
     // objetos na cena
+    std::vector<Sphere> spheres;
+    spheres.push_back(Sphere(Vec3(0, 0, 0), 1.0f));
+    spheres.push_back(Sphere(Vec3(-2, 0, 0), 1.0f));
+    spheres.push_back(Sphere(Vec3(2, 0, 0), 1.0f));
+
     //luz
     Vec3 lightDir(-1, -1, -1);
     lightDir = lightDir.normalize();
-    
+
     //renderizar
 }
